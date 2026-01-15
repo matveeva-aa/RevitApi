@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_01_1", "RevitApi\Task_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_02", "Task_02\Task_02.csproj", "{23A1C8C1-A2B5-46FA-AC41-B07FF27CCA4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_03", "Task_03\Task_03.csproj", "{11C5511B-8FDE-45B2-A764-C7A40E2D9505}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{23A1C8C1-A2B5-46FA-AC41-B07FF27CCA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23A1C8C1-A2B5-46FA-AC41-B07FF27CCA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23A1C8C1-A2B5-46FA-AC41-B07FF27CCA4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11C5511B-8FDE-45B2-A764-C7A40E2D9505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11C5511B-8FDE-45B2-A764-C7A40E2D9505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C5511B-8FDE-45B2-A764-C7A40E2D9505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11C5511B-8FDE-45B2-A764-C7A40E2D9505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
