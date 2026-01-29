@@ -1,0 +1,167 @@
+﻿<Window x:Class="Task_08.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_08.Views"
+        mc:Ignorable="d"
+        Title="Анализатор геометрии стен" 
+        Height="520" Width="400"
+        Topmost="True">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Анализ геометрии стены"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,10"/>
+
+        <Button Grid.Row="1"
+                Content="Выбрать стену"
+                Width="140"
+                HorizontalAlignment="Center"
+                Margin="0,10,0,10
+                "
+                Command="{Binding SelectWallCommand}"/>
+
+        <Border Grid.Row="2"
+                CornerRadius="10"
+                Padding="16">
+
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#F2F7FF"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ThicknessOk}" Value="True">
+                            <Setter Property="Background" Value="#F2FFF5"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ThicknessOk}" Value="False">
+                            <Setter Property="Background" Value="#FFF2F2"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <StackPanel>
+
+                <GroupBox Header="Информация о стене" Margin="0,0,0,12">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Имя:" Margin="0,0,8,8"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding WallInfo.WallName}" FontWeight="SemiBold"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Тип:" Margin="0,0,8,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding WallInfo.WallType}" FontWeight="SemiBold"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Геометрические параметры" Margin="0,0,0,12">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Длина:"
+                                   Margin="0,0,8,8"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="{Binding WallInfo.LengthMm, StringFormat={}{0:0} мм}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="Высота:"
+                                   Margin="0,0,8,8"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="{Binding WallInfo.HeightMm,StringFormat={}{0:0} мм}"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Толщина:"
+                                   Margin="0,0,8,8"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="{Binding WallInfo.ThicknessMm, StringFormat={}{0:0} мм}"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="Объем:"
+                                   Margin="0,0,8,8"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1"
+                                   Text="{Binding WallInfo.VolumeM3, StringFormat={}{0:0.###} м³}"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="Площадь:"
+                                   Margin="0,0,8,0"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                   Text="{Binding WallInfo.AreaM2, StringFormat={}{0:0.###} м²}"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Контроль толщины">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Предел толщины:"
+                                   Margin="0,0,8,8"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 Width="80"
+                                 Text="{Binding ThicknessLimitMm, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2"
+                                   Text="мм"
+                                   Margin="8,0,0,8"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="Статус:"
+                                   Margin="0,0,8,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Grid.ColumnSpan="2"
+                                   FontWeight="SemiBold">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="—"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ThicknessOk}" Value="True">
+                                            <Setter Property="Text" Value="Норма"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ThicknessOk}" Value="False">
+                                            <Setter Property="Text" Value="Превышение"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
